@@ -1,6 +1,7 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,6 +20,7 @@ public class Order {
     @NotNull @Valid
     Customer customer;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Indexed(expireAfterSeconds = 20)
     Date date;
 
     public Date getDate() {
