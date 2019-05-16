@@ -3,6 +3,8 @@ package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 import com.netcracker.CoffeeShopApplication.authenticationservice.model.User;
 import com.netcracker.CoffeeShopApplication.authenticationservice.repository.UserRepository;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/coffeeshop")
 public class AuthenticationController {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -33,7 +37,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public void authenticate(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws CustomException {
-
+        logger.info("Authenticating User ");
         try {
             String username = user.getUserName();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
@@ -43,6 +47,7 @@ public class AuthenticationController {
             String token = authenticationTokenProvider.createToken(username, roles);
             response.addHeader("Authorization", "Bearer " + token);
         } catch (AuthenticationException e) {
+            logger.error("authentication failed due to " + e.getMessage(), e);
             throw new CustomException("Invalid username/password supplied");
         }
     }

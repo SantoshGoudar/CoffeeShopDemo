@@ -1,5 +1,7 @@
 package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class AuthenticationFilter extends GenericFilterBean {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     AuthenticationTokenProvider authenticationTokenProvider;
 
@@ -22,6 +25,7 @@ public class AuthenticationFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        logger.info("authenticating the JWT token in header ");
         String token = authenticationTokenProvider.resolveToken((HttpServletRequest) request);
         if (token != null && authenticationTokenProvider.validateToken(token)) {
             Authentication auth = token != null ? authenticationTokenProvider.getAuthentication(token) : null;

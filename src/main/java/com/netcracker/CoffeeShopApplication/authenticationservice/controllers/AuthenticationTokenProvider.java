@@ -2,6 +2,8 @@ package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import io.jsonwebtoken.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Component
 public class AuthenticationTokenProvider {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     @Value("${security.jwt.token.secret-key:secret}")
     private String secretKey = "secret";
 
@@ -33,7 +36,7 @@ public class AuthenticationTokenProvider {
     }
 
     public String createToken(String username, List<String> roles) {
-
+        logger.info("creating the token for JWT Auth");
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);
 
@@ -66,16 +69,21 @@ public class AuthenticationTokenProvider {
     }
 
     public boolean validateToken(String token) {
+        logger.info("validating JWT token in header");
+
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
 
             if (claims.getBody().getExpiration().before(new Date())) {
+                logger.info("JWT token is Expired");
                 return false;
             }
 
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-           return false;
+            logger.error("JWT token verification failed dut to: " + e.getMessage(), e);
+
+            return false;
         }
     }
 
