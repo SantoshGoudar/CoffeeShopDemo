@@ -2,10 +2,12 @@ package com.netcracker.CoffeeShopApplication.ordermanagement.services;
 
 import com.mongodb.client.model.Projections;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
+import com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Order;
 import com.netcracker.CoffeeShopApplication.ordermanagement.repositoy.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.aggregation.*;
 
@@ -16,10 +18,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class OrderServiceImpl implements OrderService {
@@ -30,8 +29,11 @@ public class OrderServiceImpl implements OrderService {
     private String seq_key = "OrderSequence";
     @Autowired
     MongoOperations mongoOp;
-   // @Autowired
-   // JavaMailSender mailSender;
+    @Autowired
+    RestServiceCaller restServiceCaller;
+    @Autowired
+    Environment environment;
+
 
     @Override
     public List<Order> listAll() {
@@ -49,10 +51,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order save(Order order) {
+    public Order save(Order order, String header) {
+        String endPoint = "http://" + environment.getProperty("server.host") + ":" + environment.getProperty("server.port") + environment.getProperty("customerEndPoint");
         if (order.getOrderId() == null) {
             long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);
             order.setOrderNo("CS" + nextSequenceNo);
+        }
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", header);
+        Customer customerEndPoint = restServiceCaller.getCustomerObject(endPoint + "/" + order.getCustomer().getPhone(), headers);
+        if (customerEndPoint == null) {
+            restServiceCaller.putCustomerObject(endPoint, headers, order.getCustomer());
+        } else {
+            order.setCustomer(customerEndPoint);
         }
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
@@ -137,6 +148,6 @@ public class OrderServiceImpl implements OrderService {
         email.setTo(order.getCustomer().getEmail());
         email.setSubject("Coffee Shop Bill " + order.getOrderId());
         email.setText("order");
-       // mailSender.send(email);
+        // mailSender.send(email);
     }
 }

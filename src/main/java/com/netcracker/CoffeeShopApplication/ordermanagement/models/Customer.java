@@ -11,10 +11,9 @@ import javax.validation.constraints.Size;
 @Document
 public class Customer {
 
-    @NotNull
-    @NotEmpty
+
     String name;
-    @Email @NotNull @NotEmpty
+
     String email;
     @Id
     @NotNull
@@ -22,6 +21,16 @@ public class Customer {
     @Size(min = 10, max = 10)
     String phone;
     String address;
+
+    public Customer() {
+    }
+
+    public Customer(@NotNull @NotEmpty String name, @Email @NotNull @NotEmpty String email, @NotNull @NotEmpty @Size(min = 10, max = 10) String phone, String address) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
 
     public String getName() {
         return name;

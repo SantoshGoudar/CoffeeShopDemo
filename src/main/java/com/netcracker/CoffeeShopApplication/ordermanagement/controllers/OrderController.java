@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -61,16 +62,17 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public Order updateOrder(@RequestBody @Valid Order order) {
+    public Order updateOrder(@RequestBody @Valid Order order, HttpServletRequest request) {
         logger.info("update order " + order.getOrderId());
-        return
-                orderService.save(order);
+        String authorization = request.getHeader("Authorization");
+        return orderService.save(order, authorization);
     }
 
     @PutMapping("/orders")
-    public Order addOrder(@RequestBody @Valid Order order) {
+    public Order addOrder(@RequestBody @Valid Order order, HttpServletRequest request) {
         logger.info("Add new Order ");
-        return orderService.save(order);
+        String authorization = request.getHeader("Authorization");
+        return orderService.save(order, authorization);
     }
 
     @DeleteMapping("/orders/{orderId}")
