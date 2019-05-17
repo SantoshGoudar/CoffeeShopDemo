@@ -1,5 +1,8 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,15 +15,20 @@ import java.util.Date;
 import java.util.List;
 
 @Document
+@ApiModel("Order")
 public class Order {
     @Id
+    @ApiModelProperty(hidden = true)
     String orderId;
     @NotEmpty
+    @ApiModelProperty(required = true, name = "Items")
     List<Item> items;
     @NotNull @Valid
+    @ApiModelProperty(required = true, name = "Customer")
     Customer customer;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Indexed(expireAfterSeconds = 20)
+    @ApiModelProperty(hidden = true)
     Date date;
 
     public Date getDate() {

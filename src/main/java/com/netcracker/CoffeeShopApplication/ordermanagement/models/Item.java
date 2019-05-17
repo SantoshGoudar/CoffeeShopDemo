@@ -1,8 +1,15 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Item")
 public class Item {
+    @ApiModelProperty(name = "Name",required = true)
     String name;
+    @ApiModelProperty(name = "Price",required = true)
     float price;
+    @ApiModelProperty(name = "Quantity",required = true)
     int qty;
 
     public Item(String name, float price) {

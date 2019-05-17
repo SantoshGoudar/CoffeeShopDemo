@@ -1,5 +1,7 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,16 +11,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Document
+@ApiModel(value = "OrderCustomer")
 public class Customer {
-
-
+    @ApiModelProperty(name = "Name")
     String name;
-
+    @ApiModelProperty(name = "Email")
     String email;
     @Id
     @NotNull
     @NotEmpty
     @Size(min = 10, max = 10)
+    @ApiModelProperty(name = "Phone", required = true)
     String phone;
     String address;
 
