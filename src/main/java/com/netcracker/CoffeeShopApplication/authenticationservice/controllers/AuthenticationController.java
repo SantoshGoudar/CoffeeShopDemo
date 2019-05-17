@@ -3,6 +3,7 @@ package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 import com.netcracker.CoffeeShopApplication.authenticationservice.model.User;
 import com.netcracker.CoffeeShopApplication.authenticationservice.repository.UserRepository;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class AuthenticationController {
     UserRepository users;
 
     @PostMapping("/login")
+    @ApiOperation("Authenticates the User and the sets the JWT auth header")
     public void authenticate(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws CustomException {
         logger.info("Authenticating User ");
         try {

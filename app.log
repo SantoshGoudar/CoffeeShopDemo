@@ -2211,3 +2211,4 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 null
 2019-05-17 11:33:51,726 INFO com.netcracker.CoffeeShopApplication.customermanagement.controllers.CustomerController [http-nio-8103-exec-5]  add a new customer with ID 9035514763
 2019-05-17 11:33:51,736 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-5] Saving Document containing fields: [_id, name, email, _class]
 2019-05-17 11:33:55,542 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] Saving Document containing fields: [_id, items, date, _class]
+2019-05-17 13:04:04,142 INFO org.mongodb.driver.connection [Thread-3] Closed connection [connectionId{localValue:2, serverValue:451}] to localhost:27017 because the pool has been closed.

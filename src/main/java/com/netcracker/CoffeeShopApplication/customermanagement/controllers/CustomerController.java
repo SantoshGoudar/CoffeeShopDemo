@@ -3,6 +3,10 @@ package com.netcracker.CoffeeShopApplication.customermanagement.controllers;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import com.netcracker.CoffeeShopApplication.customermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.customermanagement.repository.CustomerRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +18,49 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/coffeeshop")
+@Api(value = "/coffeeshop/customers", produces = "application/json"
+)
 public class CustomerController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     CustomerRepository repository;
 
     @GetMapping("/customers")
+    @ApiOperation(value="get all customers",response=Customer.class)
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Customers  Retrieved",response=Customer.class),
+            @ApiResponse(code=500,message="Internal Server Error"),
+            @ApiResponse(code=404,message="Customers not found"),
+            @ApiResponse(code=403,message="User not Authorized")
+    })
+
     public List<Customer> getAllCustomers() {
         logger.info(" list all Customers");
         return repository.findAll();
     }
 
     @PostMapping("/customers")
+    @ApiOperation(value="add customer",response=Customer.class)
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Customer added to DB",response=Customer.class),
+            @ApiResponse(code=500,message="Internal Server Error"),
+            @ApiResponse(code=404,message="Could not add Customer"),
+            @ApiResponse(code=403,message="User not Authorized")
+    })
+
     public Customer addCustomer(@RequestBody @Valid Customer customer) {
         logger.info(" add a new customer with ID " + customer.getPhone());
         return repository.save(customer);
     }
 
     @GetMapping("/customers/{id}")
+    @ApiOperation(value="add customer",response=Customer.class)
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Get Customer  ",response=Customer.class),
+            @ApiResponse(code=500,message="Internal Server Error"),
+            @ApiResponse(code=404,message="Could not get Customer"),
+            @ApiResponse(code=403,message="User not Authorized")
+    })
     public Customer getOne(@PathVariable String id) throws Exception {
         logger.info(" find one customer by ID " + id);
 
