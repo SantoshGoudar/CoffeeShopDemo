@@ -1,5 +1,7 @@
 package com.netcracker.CoffeeShopApplication.customermanagement.controllers;
 
+import com.netcracker.CoffeeShopApplication.constants.StringConstants;
+import com.netcracker.CoffeeShopApplication.customermanagement.service.CustomerService;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import com.netcracker.CoffeeShopApplication.customermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.customermanagement.repository.CustomerRepository;
@@ -7,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +20,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/coffeeshop")
+@RequestMapping(StringConstants.CUSTOMERS)
 @Api(value = "CustomerMangement API", produces = "application/json", description = "All Customer Management related APIS of CoffeeShop Application"
 )
+@Slf4j
 public class CustomerController {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-    @Autowired
-    CustomerRepository repository;
 
-    @GetMapping("/customers")
+    @Autowired
+    CustomerService service;
+
+    @GetMapping()
     @ApiOperation(value = "Retrieves all the customers of CoffeeShop", response = Customer.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customers  Retrieved", response = Customer.class),
@@ -35,11 +39,11 @@ public class CustomerController {
     })
 
     public List<Customer> getAllCustomers() {
-        logger.info(" list all Customers");
-        return repository.findAll();
+        log.info(" list all Customers");
+        return service.findAll();
     }
 
-    @PostMapping("/customers")
+    @PostMapping()
     @ApiOperation(value = "Add new Customer to the CoffeeShop", response = Customer.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customer added to DB", response = Customer.class),
@@ -49,11 +53,11 @@ public class CustomerController {
     })
 
     public Customer addCustomer(@RequestBody @Valid Customer customer) {
-        logger.info(" add a new customer with ID " + customer.getPhone());
-        return repository.save(customer);
+        log.info(" add a new customer with ID " + customer.getPhone());
+        return service.save(customer);
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping(StringConstants.CUSTOMER_ID)
     @ApiOperation(value = "Get Customer with Phone number ", response = Customer.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Get Customer  ", response = Customer.class),
@@ -62,24 +66,18 @@ public class CustomerController {
             @ApiResponse(code = 403, message = "User not Authorized")
     })
     public Customer getOne(@PathVariable String id) throws Exception {
-        logger.info(" find one customer by ID " + id);
-
-        Optional<Customer> byId = repository.findById(id);
-        if (!byId.isPresent()) {
-            logger.error("No csutomer with given phone number present " + id);
-            throw new CustomException("No customer present with phone number " + id);
-        }
-        return byId.get();
+        log.info(" find one customer by ID " + id);
+        return service.findById(id);
     }
 
-    @PutMapping("/customers")
+    @PutMapping()
     public Customer update(@RequestBody @Valid Customer customer) {
-        logger.info("update customer");
-        return repository.save(customer);
+        log.info("update customer");
+        return service.save(customer);
 
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping(StringConstants.CUSTOMER_ID)
     @ApiOperation(value = "Delete Customer with Phone number ", response = Customer.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Deleted Customer successfully", response = Customer.class),
@@ -88,8 +86,8 @@ public class CustomerController {
             @ApiResponse(code = 403, message = "User not Authorized")
     })
     public String delete(@PathVariable String id) {
-        logger.info("delete customer with ID " + id);
-        repository.deleteById(id);
+        log.info("delete customer with ID " + id);
+        service.deleteById(id);
         return "Deleted succesfully";
     }
 }

@@ -1,27 +1,17 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@Getter
+@Setter
 public class DbSequence {
     @Id
     String name;
     long seq;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getSeq() {
-        return seq;
-    }
-
-    public void setSeq(long seq) {
-        this.seq = seq;
-    }
 }

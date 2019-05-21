@@ -8,6 +8,7 @@ import com.opencsv.CSVWriter;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,9 @@ import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 @Service
+@Slf4j
 public class CSVReportGenerator implements IReportGenerator {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Override
     public void writeDailyReport(PrintWriter writer, List<Order> orders) throws CustomException {
@@ -53,7 +55,7 @@ public class CSVReportGenerator implements IReportGenerator {
             csvWriter.writeNext(new String[]{"Total", String.valueOf(totalQty), String.valueOf(totalPrice)});
 
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
             throw new CustomException(e.getMessage(), e);
         }
     }
@@ -99,7 +101,7 @@ public class CSVReportGenerator implements IReportGenerator {
 
 
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
             throw new CustomException(e.getMessage(), e);
         }
     }

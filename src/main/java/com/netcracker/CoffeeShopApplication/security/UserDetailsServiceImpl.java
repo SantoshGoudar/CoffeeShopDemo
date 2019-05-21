@@ -3,6 +3,7 @@ package com.netcracker.CoffeeShopApplication.security;
 import com.netcracker.CoffeeShopApplication.authenticationservice.model.User;
 import com.netcracker.CoffeeShopApplication.authenticationservice.repository.UserRepository;
 import com.netcracker.CoffeeShopApplication.authenticationservice.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private UserService userService;
 
@@ -26,9 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String username) {
         User user = userService.findbyId(username);
-        logger.info("find user by name " + username);
+        log.info("find user by name " + username);
         if (user == null) {
-            logger.error("User Not found with name " + username);
+            log.error("User Not found with name " + username);
             throw new UsernameNotFoundException(username);
         }
 

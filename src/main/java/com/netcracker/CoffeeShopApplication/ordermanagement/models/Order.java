@@ -3,6 +3,8 @@ package com.netcracker.CoffeeShopApplication.ordermanagement.models;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Document
 @ApiModel("Order")
+@Getter
+@Setter
 public class Order {
     @Id
     @ApiModelProperty(hidden = true)
@@ -31,35 +35,5 @@ public class Order {
     @ApiModelProperty(hidden = true)
     Date date;
 
-    public Date getDate() {
-        return date;
-    }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderNo(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

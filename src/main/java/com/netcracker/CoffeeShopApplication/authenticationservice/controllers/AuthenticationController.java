@@ -2,9 +2,12 @@ package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 
 import com.netcracker.CoffeeShopApplication.authenticationservice.model.User;
 import com.netcracker.CoffeeShopApplication.authenticationservice.repository.UserRepository;
+import com.netcracker.CoffeeShopApplication.authenticationservice.service.AuthenicationService;
+import com.netcracker.CoffeeShopApplication.constants.StringConstants;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,36 +27,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coffeeshop")
+@RequestMapping(StringConstants.AUTH)
 @Api(value = "Authentication API", description = "Authentication of the USER is handled here")
+@Slf4j
 public class AuthenticationController {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    AuthenicationService authenicationService;
 
-    @Autowired
-    AuthenticationTokenProvider authenticationTokenProvider;
 
-    @Autowired
-    UserRepository users;
-
-    @PostMapping("/login")
+    @PostMapping(StringConstants.LOGIN)
     @ApiOperation("Authenticates the User and the sets the JWT auth header, that header should be used in subsequent requests for authorization")
-    public void authenticate(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws CustomException {
-        logger.info("Authenticating User ");
-        try {
-            String username = user.getUserName();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
-            User dbUser = this.users.findById(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
-            List<String> roles = new ArrayList<>();
-            roles.add("ROLE_" + dbUser.getRole());
-            String token = authenticationTokenProvider.createToken(username, roles);
-            response.addHeader("Authorization", "Bearer " + token);
-        } catch (AuthenticationException e) {
-            logger.error("authentication failed due to " + e.getMessage(), e);
-            throw new CustomException("Invalid username/password supplied");
-        }
+    public void authenticate(@RequestBody User user, HttpServletResponse response) throws CustomException {
+        log.info("Authentication called");
+        authenicationService.authenticateUser(user, response);
     }
 
 }

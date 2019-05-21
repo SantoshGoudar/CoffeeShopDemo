@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
         String endPoint = "http://" + environment.getProperty("server.host") + ":" + environment.getProperty("server.port") + environment.getProperty("customerEndPoint");
         if (order.getOrderId() == null) {
             long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);
-            order.setOrderNo("CS" + nextSequenceNo);
+            order.setOrderId("CS" + nextSequenceNo);
         }
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", header);
@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     public Order update(Order order) {
         if (order.getOrderId() == null) {
             long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);
-            order.setOrderNo("CS" + nextSequenceNo);
+            order.setOrderId("CS" + nextSequenceNo);
         }
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();

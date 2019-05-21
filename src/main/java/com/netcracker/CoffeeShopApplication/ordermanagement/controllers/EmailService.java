@@ -5,6 +5,7 @@ import com.netcracker.CoffeeShopApplication.ordermanagement.models.Order;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
@@ -27,6 +29,7 @@ public class EmailService {
     private Configuration freemarkerConfig;
 
     public void sendSimpleMessage(Order order) throws CustomException {
+        log.info("Send email invoice");
         try {
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message,
@@ -48,6 +51,7 @@ public class EmailService {
 
             emailSender.send(message);
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             throw new CustomException(e.getMessage(), e);
         }
     }
