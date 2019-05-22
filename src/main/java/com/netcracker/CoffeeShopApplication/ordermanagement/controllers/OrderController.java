@@ -40,7 +40,7 @@ public class OrderController {
     EmailService emailService;
 
     @GetMapping(StringConstants.ORDERS)
-    @ApiOperation(value = "List All Orders According to the date,week,month or year", response = com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer.class)
+    @ApiOperation(value = "List All Orders According to the date,week,month or year", response = com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer.class, tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Listed Orders Successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -69,7 +69,7 @@ public class OrderController {
     }
 
     @GetMapping(StringConstants.ORDERS_WITH_ID)
-    @ApiOperation(value = "Get a Order with Order Number specified", response = Customer.class)
+    @ApiOperation(value = "Get a Order with Order Number specified", response = Customer.class, tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Got the Order with Order number", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -84,7 +84,7 @@ public class OrderController {
     }
 
     @PostMapping(StringConstants.ORDERS)
-    @ApiOperation(value = "Update existing Order in the CoffeeShop", response = Customer.class)
+    @ApiOperation(value = "Update existing Order in the CoffeeShop", response = Customer.class, tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Order Added Successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -98,7 +98,7 @@ public class OrderController {
     }
 
     @PutMapping(StringConstants.ORDERS)
-    @ApiOperation(value = "Add new Order to CoffeeShop", response = Customer.class)
+    @ApiOperation(value = "Add new Order to CoffeeShop", response = Customer.class, tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Order Added Successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -112,7 +112,7 @@ public class OrderController {
     }
 
     @DeleteMapping(StringConstants.ORDERS_WITH_ID)
-    @ApiOperation(value = "Delete existing Order in the CoffeeShop", response = Customer.class)
+    @ApiOperation(value = "Delete existing Order in the CoffeeShop", response = Customer.class, tags = {"Order"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Order Deleted Successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -126,7 +126,7 @@ public class OrderController {
     }
 
     @GetMapping(StringConstants.REPORT_ORDERS)
-    @ApiOperation(value = "Generate Sales Report of CoffeeShop per Day or Week or Month", response = File.class, produces = "attachment; file=sales_report.csv")
+    @ApiOperation(value = "Generate Sales Report of CoffeeShop per Day or Week or Month", response = File.class, produces = "attachment; file=sales_report.csv", tags = {"Report"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "CSV Report Generated Successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -163,7 +163,7 @@ public class OrderController {
     }
 
     @GetMapping(StringConstants.INVOICE)
-    @ApiOperation(value = "Send the Invoice to the Customer for the mentioned OrderNumber")
+    @ApiOperation(value = "Send the Invoice to the Customer for the mentioned OrderNumber", tags = {"Invoice"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Sent Invoice over Email successfully"),
             @ApiResponse(code = 500, message = "Internal Server Error"),

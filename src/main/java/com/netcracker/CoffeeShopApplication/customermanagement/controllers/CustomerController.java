@@ -30,7 +30,7 @@ public class CustomerController {
     CustomerService service;
 
     @GetMapping()
-    @ApiOperation(value = "Retrieves all the customers of CoffeeShop", response = Customer.class)
+    @ApiOperation(value = "Retrieves all the customers of CoffeeShop", tags = {"Customer"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customers  Retrieved", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -44,7 +44,7 @@ public class CustomerController {
     }
 
     @PostMapping()
-    @ApiOperation(value = "Add new Customer to the CoffeeShop", response = Customer.class)
+    @ApiOperation(value = "Add new Customer to the CoffeeShop", response = Customer.class, tags = {"Customer"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Customer added to DB", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -58,7 +58,7 @@ public class CustomerController {
     }
 
     @GetMapping(StringConstants.CUSTOMER_ID)
-    @ApiOperation(value = "Get Customer with Phone number ", response = Customer.class)
+    @ApiOperation(value = "Get Customer with Phone number ", response = Customer.class, tags = {"Customer"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Get Customer  ", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),
@@ -71,6 +71,13 @@ public class CustomerController {
     }
 
     @PutMapping()
+    @ApiOperation(value = "Update Customer ", response = Customer.class, tags = {"Customer"})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Updated Successfully ", response = Customer.class),
+            @ApiResponse(code = 500, message = "Internal Server Error"),
+            @ApiResponse(code = 404, message = "Could not get Customer"),
+            @ApiResponse(code = 403, message = "User not Authorized")
+    })
     public Customer update(@RequestBody @Valid Customer customer) {
         log.info("update customer");
         return service.save(customer);
@@ -78,7 +85,7 @@ public class CustomerController {
     }
 
     @DeleteMapping(StringConstants.CUSTOMER_ID)
-    @ApiOperation(value = "Delete Customer with Phone number ", response = Customer.class)
+    @ApiOperation(value = "Delete Customer with Phone number ", response = Customer.class, tags = {"Customer"})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Deleted Customer successfully", response = Customer.class),
             @ApiResponse(code = 500, message = "Internal Server Error"),

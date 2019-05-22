@@ -4,9 +4,9 @@ import com.netcracker.CoffeeShopApplication.authenticationservice.model.User;
 import com.netcracker.CoffeeShopApplication.authenticationservice.repository.UserRepository;
 import com.netcracker.CoffeeShopApplication.authenticationservice.service.AuthenicationService;
 import com.netcracker.CoffeeShopApplication.constants.StringConstants;
+import com.netcracker.CoffeeShopApplication.customermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +37,10 @@ public class AuthenticationController {
 
 
     @PostMapping(StringConstants.LOGIN)
-    @ApiOperation("Authenticates the User and the sets the JWT auth header, that header should be used in subsequent requests for authorization")
+    @ApiOperation(value = "Authenticates the User and the sets the JWT auth header, that header should be used in subsequent requests for authorization", tags = {"Authentication"})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Authentication successfull", responseHeaders = {@ResponseHeader(name = "Authentication", description = "Bearer Token")}),
+    })
     public void authenticate(@RequestBody User user, HttpServletResponse response) throws CustomException {
         log.info("Authentication called");
         authenicationService.authenticateUser(user, response);

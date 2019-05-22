@@ -32,7 +32,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(DEFAULT_API_INFO)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
-                .consumes(DEFAULT_PRODUCES_AND_CONSUMES).securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.newArrayList(apiKey())).select()
+                .tags(new Tag("Invoice", "Invoice Management API"), new Tag("Authentication", "Authentication Management API"), new Tag("Product", "Product Management API for CoffeeShop"), new Tag("Order", "Order Management API for CoffeeShop"), new Tag("Customer", "Customer Management API for CoffeeShop"), new Tag("Report", "Sales Report Management API for CoffeeShop")).consumes(DEFAULT_PRODUCES_AND_CONSUMES).securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.newArrayList(apiKey())).select()
                 .apis(RequestHandlerSelectors.basePackage("com.netcracker"))
                 .paths(PathSelectors.any())
                 .build();
