@@ -99,6 +99,6 @@ public class CustomerControllerTest {
     @Test
     public void testDeleteCustomer() throws Exception {
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.delete("/customers/" + customer.getPhone()).accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
-        Assert.assertEquals("Deleted Succesfully", response.getContentAsString());
+        Assert.assertEquals("Deleted succesfully", response.getContentAsString());
     }
 }
