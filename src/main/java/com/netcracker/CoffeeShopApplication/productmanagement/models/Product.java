@@ -1,5 +1,6 @@
 package com.netcracker.CoffeeShopApplication.productmanagement.models;
 
+import com.netcracker.CoffeeShopApplication.productmanagement.validators.annotations.Enum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Product {
     @Id
-    @NotEmpty
-    @NotNull
+    @NotEmpty(message = "{product.name.notempty}")
+    @NotNull(message = "{product.name.notnull}")
     String name;
-    @NotNull
+    @NotNull(message = "{product.category.notnull}")
     Category category;
     float price;
 

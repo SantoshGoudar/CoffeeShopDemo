@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,8 +48,9 @@ public class ProductController {
 
     @PostMapping(StringConstants.PRODUCTS)
     @ApiOperation(value="Add a new Product to the CoffeeShop",tags = {"Product"})
-    public Product addProduct(@RequestBody @Valid Product product) {
+    public Product addProduct(@RequestBody @Valid Product product ) {
         log.info("add new product " + product.getName());
+
         return productService.save(product);
     }
 

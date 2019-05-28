@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -134,8 +136,9 @@ public class OrderController {
             @ApiResponse(code = 403, message = "User not Authorized")
     })
     public void getReport(HttpServletResponse response, @RequestParam(required = false) @ApiParam(value = "Date : used to get Sales Report Per Date", name = "Date") String date, @RequestParam(required = false) @ApiParam(value = "Week : used to get Sales Report per DATE", name = "Week") String week, @RequestParam(required = false) @ApiParam(value = "MOnth : used to get Sales Report per Month", name = "Month") String month, @RequestParam(required = false) @ApiParam(value = "Year : used to get Sales Report per year", name = "Year") String year) throws ParseException, IOException, CustomException {
-        response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; file=sales_report.csv");
+
+        response.setContentType(new MediaType("text","csv").getType());
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; file=sales_report.csv");
         log.info("report generation called ");
         List<Order> orders;
 

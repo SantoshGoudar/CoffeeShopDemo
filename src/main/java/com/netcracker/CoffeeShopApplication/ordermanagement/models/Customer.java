@@ -24,9 +24,9 @@ public class Customer {
     @ApiModelProperty(name = "Email")
     String email;
     @Id
-    @NotNull
-    @NotEmpty
-    @Size(min = 10, max = 10)
+    @NotNull(message="{customer.phone.notnull}")
+    @NotEmpty(message = "{customer.phone.notempty}")
+    @Size(min = 10, max = 10,message = "{customer.phone.size}")
     @ApiModelProperty(name = "Phone", required = true)
     String phone;
     @EqualsAndHashCode.Exclude

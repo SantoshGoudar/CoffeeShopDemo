@@ -24,14 +24,14 @@ public class Order {
     @Id
     @ApiModelProperty(hidden = true)
     String orderId;
-    @NotEmpty
+    @NotEmpty(message = "{order.items.notempty}")
     @ApiModelProperty(required = true, name = "Items")
     List<Item> items;
-    @NotNull @Valid
+    @NotNull(message = "{order.customer.notnull}") @Valid
     @ApiModelProperty(required = true, name = "Customer")
     Customer customer;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Indexed(expireAfterSeconds = 20)
+    @Indexed(expireAfterSeconds = 3600)
     @ApiModelProperty(hidden = true)
     Date date;
 
