@@ -1,4 +1,4 @@
-package com.netcracker.CoffeeShopApplication.ordermanagement.controllers;
+package com.netcracker.CoffeeShopApplication.ordermanagement.services;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -21,11 +21,8 @@ public class ProductService {
     }
 
     public Product findById(String id) throws CustomException {
-        Optional<Product> byId = productRepository.findById(id);
-        if (!byId.isPresent()) {
-            throw new CustomException("product not found with name " + id);
-        }
-        return byId.get();
+        return productRepository.findById(id).orElseThrow(() -> new CustomException("product not found with name " + id));
+        
     }
 
     public Product save(Product product) {

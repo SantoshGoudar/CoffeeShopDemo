@@ -18,11 +18,7 @@ public class UserService {
     BCryptPasswordEncoder encoder;
 
     public User findbyId(String id) {
-        Optional<User> byId = userRepository.findById(id);
-        if (!byId.isPresent()) {
-            throw new UsernameNotFoundException(id);
-        }
-        return byId.get();
+        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(id));
     }
 
     public void save(User user) {

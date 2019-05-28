@@ -19,6 +19,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class OrderServiceImpl implements OrderService {
@@ -42,12 +44,22 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findById(String orderId) throws CustomException {
-        Optional<Order> byId = repository.findById(orderId);
+        return repository.findById(orderId).orElseThrow(() -> new CustomException("No Order present with orderId " + orderId));
 
-        if (!byId.isPresent()) {
-            throw new CustomException("No Order present with orderId " + orderId);
+    }
+
+    @Override
+    public Order save(Order order) {
+        if (order.getOrderId() == null) {
+            long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);
+            order.setOrderId("CS" + nextSequenceNo);
         }
-        return byId.get();
+        if (order.getDate() == null) {
+            Calendar calendar = Calendar.getInstance();
+            Date now = calendar.getTime();
+            order.setDate(now);
+        }
+        return repository.save(order);
     }
 
     @Override
@@ -65,10 +77,18 @@ public class OrderServiceImpl implements OrderService {
         } else {
             order.setCustomer(customerEndPoint);
         }
-        Calendar calendar = Calendar.getInstance();
-        Date now = calendar.getTime();
-        order.setDate(now);
+        if (order.getDate() == null) {
+            Calendar calendar = Calendar.getInstance();
+            Date now = calendar.getTime();
+            order.setDate(now);
+        }
         return repository.save(order);
+    }
+
+    @Override
+    public List<String> save(List<Order> orders) {
+        List<Order> list = repository.saveAll(orders);
+        return list.stream().map(Order::getOrderId).collect(Collectors.toList());
     }
 
     @Override

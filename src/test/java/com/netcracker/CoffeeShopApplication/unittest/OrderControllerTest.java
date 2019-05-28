@@ -2,13 +2,12 @@ package com.netcracker.CoffeeShopApplication.unittest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netcracker.CoffeeShopApplication.constants.StringConstants;
-import com.netcracker.CoffeeShopApplication.ordermanagement.controllers.EmailService;
+import com.netcracker.CoffeeShopApplication.ordermanagement.services.EmailService;
 import com.netcracker.CoffeeShopApplication.ordermanagement.controllers.OrderController;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Item;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Order;
 import com.netcracker.CoffeeShopApplication.ordermanagement.services.CSVReportGenerator;
-import com.netcracker.CoffeeShopApplication.ordermanagement.services.IReportGenerator;
 import com.netcracker.CoffeeShopApplication.ordermanagement.services.OrderService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,7 +26,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
-import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = OrderController.class, secure = false)

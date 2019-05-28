@@ -2,16 +2,17 @@ package com.netcracker.CoffeeShopApplication.authenticationservice.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
 @Document
-@ApiModel(description = "User - ")
-@Getter
-@Setter
+@ApiModel(description = "User ")
+@Data
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class User {

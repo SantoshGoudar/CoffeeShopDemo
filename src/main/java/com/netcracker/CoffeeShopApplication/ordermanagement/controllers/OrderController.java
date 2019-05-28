@@ -5,14 +5,12 @@ import com.netcracker.CoffeeShopApplication.constants.StringConstants;
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Order;
+import com.netcracker.CoffeeShopApplication.ordermanagement.services.EmailService;
 import com.netcracker.CoffeeShopApplication.ordermanagement.services.IReportGenerator;
 import com.netcracker.CoffeeShopApplication.ordermanagement.services.OrderService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +21,6 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -49,7 +45,10 @@ public class OrderController {
             @ApiResponse(code = 404, message = "Could not get Orders"),
             @ApiResponse(code = 403, message = "User not Authorized")
     })
-    public List<Order> listAllOrders(@RequestParam(required = false) @ApiParam(value = "Date : used to query Orders per DATE", name = "Date") String date, @RequestParam(required = false) @ApiParam(name = "Week", value = "Week : Calendar week Number per year : to get Orders per week") String week, @RequestParam(required = false) @ApiParam(name = "Month", value = "Month no : for getting Orders per month") String month, @RequestParam(required = false) @ApiParam(name = "Year", value = "Year : to get the Orders per year") String year) throws ParseException {
+    public List<Order> listAllOrders(@RequestParam(required = false) @ApiParam(value = "Date : used to query Orders per DATE", name = "Date") String date,
+                                     @RequestParam(required = false) @ApiParam(name = "Week", value = "Week : Calendar week Number per year : to get Orders per week") String week,
+                                     @RequestParam(required = false) @ApiParam(name = "Month", value = "Month no : for getting Orders per month") String month,
+                                     @RequestParam(required = false) @ApiParam(name = "Year", value = "Year : to get the Orders per year") String year) throws ParseException {
         log.info("list all orders called");
         if (date != null) {
             log.info("list all orders per date " + date);
@@ -137,29 +136,38 @@ public class OrderController {
     })
     public void getReport(HttpServletResponse response, @RequestParam(required = false) @ApiParam(value = "Date : used to get Sales Report Per Date", name = "Date") String date, @RequestParam(required = false) @ApiParam(value = "Week : used to get Sales Report per DATE", name = "Week") String week, @RequestParam(required = false) @ApiParam(value = "MOnth : used to get Sales Report per Month", name = "Month") String month, @RequestParam(required = false) @ApiParam(value = "Year : used to get Sales Report per year", name = "Year") String year) throws ParseException, IOException, CustomException {
 
-        response.setContentType(new MediaType("text","csv").getType());
+        response.setContentType(new MediaType("text", "csv").getType());
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; file=sales_report.csv");
         log.info("report generation called ");
         List<Order> orders;
 
         if (date != null) {
             orders = orderService.listOrdersPerDate(date);
-            log.info("report generation called for date " + date);
-            reportGenerator.writeDailyReport(response.getWriter(), orders);
+            if (orders != null && !orders.isEmpty()) {
+                log.info("report generation called for date " + date);
+                reportGenerator.writeDailyReport(response.getWriter(), orders);
+            }
         }
         if (week != null) {
             orders = orderService.listOrdersPerWeek(Integer.parseInt(week));
-            log.info("report generation called for week " + week);
-            reportGenerator.writeWeeklyReport(response.getWriter(), orders);
+            if (orders != null && !orders.isEmpty()) {
+                log.info("report generation called for week " + week);
+                reportGenerator.writeWeeklyReport(response.getWriter(), orders);
+            }
         }
         if (month != null) {
             log.info("report generation called for month " + month);
             orders = orderService.listOrdersPerMonth(Integer.parseInt(month));
-            reportGenerator.writeMonthlyReport(response.getWriter(), orders);
+            if (orders != null && !orders.isEmpty()) {
+                reportGenerator.writeMonthlyReport(response.getWriter(), orders);
+            }
         }
         if (year != null) {
             log.info("report generation called for year " + year);
             orders = orderService.listOrdersPerYear(year);
+            if (orders != null && !orders.isEmpty()) {
+                reportGenerator.writeMonthlyReport(response.getWriter(), orders);
+            }
         }
 
 

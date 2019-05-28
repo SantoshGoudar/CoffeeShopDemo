@@ -40,9 +40,7 @@ public class ProductController {
     @ApiOperation(value = "Get Product with the specified Name",tags = {"Product"})
     public Product getProduct(@PathVariable String name) throws CustomException {
         log.info("l get product " + name);
-
-        return productService.findById(name
-        );
+        return productService.findById(name);
 
     }
 

@@ -12,7 +12,11 @@ public interface OrderService {
 
     public Order findById(String orderId) throws CustomException;
 
-    public Order save(Order order,String header);
+    public Order save(Order order, String header);
+
+    public Order save(Order order);
+
+    public List<String> save(List<Order> orders);
 
     public Order update(Order order);
 
@@ -25,14 +29,17 @@ public interface OrderService {
      * @param weekN: String calender week from starting of the year
      */
     public List<Order> listOrdersPerWeek(int weekN);
+
     /**
      * @param date: string date of format yyyy
      */
     public List<Order> listOrdersPerYear(String date);
+
     /**
      * @param month: String month number - Jan starts with 0
      */
     public List<Order> listOrdersPerMonth(int month);
+
     /**
      * @param date: string date of format yyyy
      */

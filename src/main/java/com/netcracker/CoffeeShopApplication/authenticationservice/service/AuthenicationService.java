@@ -33,7 +33,7 @@ public class AuthenicationService {
         try {
 
             String username = user.getUserName();
-            log.info("authenticating user "+user);
+            log.info("authenticating user " + user);
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
             User dbUser = this.users.findById(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
             List<String> roles = new ArrayList<>();

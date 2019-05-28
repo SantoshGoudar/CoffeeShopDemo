@@ -29,9 +29,9 @@ public class Order {
     List<Item> items;
     @NotNull(message = "{order.customer.notnull}") @Valid
     @ApiModelProperty(required = true, name = "Customer")
-    Customer customer;
+    Customer customer; //DbRef can also be used,but it has limitations
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Indexed(expireAfterSeconds = 3600)
+    @Indexed
     @ApiModelProperty(hidden = true)
     Date date;
 

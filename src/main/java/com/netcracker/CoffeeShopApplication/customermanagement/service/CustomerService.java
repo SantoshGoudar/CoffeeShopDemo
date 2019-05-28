@@ -17,14 +17,11 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     public Customer findById(String id) throws CustomException {
-        Optional<Customer> byId = customerRepository.findById(id);
-        log.info("Find customer by ID " + id);
-        if (!byId.isPresent()) {
+        return customerRepository.findById(id).orElseThrow(() -> {
             CustomException customException = new CustomException("Customer not found with Phone " + id);
             log.error(customException.getMessage(), customException);
-            throw customException;
-        }
-        return byId.get();
+            return customException;
+        });
     }
 
     public List<Customer> findAll() {

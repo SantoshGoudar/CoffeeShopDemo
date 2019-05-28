@@ -1,6 +1,5 @@
 package com.netcracker.CoffeeShopApplication.authenticationservice.controllers;
 
-import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +21,10 @@ import java.util.List;
 public class AuthenticationTokenProvider {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Value("${security.jwt.token.secret-key:secret}")
-    private String secretKey = "secret";
+    private String secretKey ;
 
     @Value("${security.jwt.token.expire-length:3600000}")
-    private long validityInMilliseconds = 3600000; // 1h
+    private long validityInMilliseconds; // 1h
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -63,7 +62,7 @@ public class AuthenticationTokenProvider {
     public String resolveToken(HttpServletRequest req) {
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
+            return bearerToken.substring(7);
         }
         return null;
     }

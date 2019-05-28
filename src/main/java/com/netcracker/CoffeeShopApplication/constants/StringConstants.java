@@ -1,15 +1,16 @@
 package com.netcracker.CoffeeShopApplication.constants;
 
-public class StringConstants {
-    public static final String PATH_SEPERATOR = "/";
-    public static final String AUTH = "/auth";
-    public static final String LOGIN = "/login";
-    public static final String CUSTOMERS = "/customers";
-    public static final String CUSTOMER_ID = "/{id}";
-    public static final String ORDERS = "/orders";
-    public static final String ORDERS_WITH_ID = ORDERS + "/{orderId}";
-    public static final String REPORT_ORDERS =  ORDERS+"/reports";
-    public static final String INVOICE = "/invoice/{orderId}";
-    public static final String PRODUCTS = "/products";
-    public static final String PRODUCTS_WITH_NAME = PRODUCTS + "/{name}";
+public interface StringConstants {
+
+    String PATH_SEPERATOR = "/";
+    String AUTH = "/auth";
+    String LOGIN = "/login";
+    String CUSTOMERS = "/customers";
+    String CUSTOMER_ID = "/{id}";
+    String ORDERS = "/orders";
+    String ORDERS_WITH_ID = ORDERS + "/{orderId}";
+    String REPORT_ORDERS = ORDERS + "/reports";
+    String INVOICE = "/invoice/{orderId}";
+    String PRODUCTS = "/products";
+    String PRODUCTS_WITH_NAME = PRODUCTS + "/{name}";
 }

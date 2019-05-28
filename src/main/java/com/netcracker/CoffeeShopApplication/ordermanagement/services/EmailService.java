@@ -1,4 +1,4 @@
-package com.netcracker.CoffeeShopApplication.ordermanagement.controllers;
+package com.netcracker.CoffeeShopApplication.ordermanagement.services;
 
 import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
 import com.netcracker.CoffeeShopApplication.ordermanagement.models.Order;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class EmailService {
+public class EmailService { //todo; move to service package
     @Autowired
     private JavaMailSender emailSender;
 

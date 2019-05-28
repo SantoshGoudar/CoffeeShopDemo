@@ -1,7 +1,8 @@
 package com.netcracker.CoffeeShopApplication.ordermanagement.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netcracker.CoffeeShopApplication.customermanagement.models.Customer;
+import com.netcracker.CoffeeShopApplication.exceptions.CustomException;
+import com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer;
 import com.netcracker.CoffeeShopApplication.productmanagement.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -25,7 +26,7 @@ public class RestServiceCaller {
         restTemplate = builder.build();
     }
 
-    public com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer getCustomerObject(String endPoint, Map<String, String> headers) {
+    public Customer getCustomerObject(String endPoint, Map<String, String> headers) throws CustomException {
         HttpHeaders httpHeaders = new HttpHeaders();
         for (Map.Entry<String, String> entry :
                 headers.entrySet()) {
@@ -41,14 +42,11 @@ public class RestServiceCaller {
 
         }
 
-        if (body == null) {
-            return null;
-        }
-        return new com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer(body.getName(), body.getEmail(), body.getPhone(), body.getAddress());
+        return body;
 
     }
 
-    public com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer putCustomerObject(String endPoint, Map<String, String> headers, com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer newCustomer) {
+    public Customer putCustomerObject(String endPoint, Map<String, String> headers, Customer newCustomer) {
         HttpHeaders httpHeaders = new HttpHeaders();
         for (Map.Entry<String, String> entry :
                 headers.entrySet()) {
@@ -58,11 +56,11 @@ public class RestServiceCaller {
 
         ResponseEntity<Customer> response = restTemplate.exchange(
                 endPoint, HttpMethod.POST, entity, Customer.class);
-        Customer body = response.getBody();
-        if (body == null) {
-            return null;
-        }
-        return new com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer(body.getName(), body.getEmail(), body.getPhone(), body.getAddress());
+
+        com.netcracker.CoffeeShopApplication.ordermanagement.models.Customer body = response.getBody();
+
+        return body;
+
 
     }
 
