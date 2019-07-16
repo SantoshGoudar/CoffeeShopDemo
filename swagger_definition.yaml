@@ -1,0 +1,325 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: CoffeeShop API
+  description: A Simple API for CoffeeShop Inventory Management, Customer Management and Order Management
+  termsOfService: Open Source
+  contact:
+    name: Santosh Goudar
+    email: santosh.goudar@netcracker.com
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+schemes:
+  - http
+  - https
+
+basePath: /coffeeshop
+tags:
+  - name: Product
+    description: Product Management API for CoffeeShop
+  - name: Order
+    description: Order Management API for CoffeeShop
+  - name: Customer
+    description: Customer Management API for CoffeeShop
+  - name: Report
+    description: Report Mangement API for CoffeeShop
+paths:
+  /products:
+    get:
+      tags:
+        - "Product"
+      summary: Get All Products in the Coffee Shop
+      description: Returns a  list of Products from the coffeeshop
+      responses:
+       200:
+        description: List of Products
+        schema:
+          $ref: "#/definitions/Products"
+    post:
+      tags:
+        - "Product"
+      summary: Add a new product to the Coffee Shop Inventory
+      description: Add new product type 
+      parameters:
+        - name: Product
+          in: body
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        201:
+          description: Added new Product successfully
+          schema:
+            $ref: "#/definitions/Product"
+  /products/{name}:
+    parameters:
+      - name: name
+        in: path
+        type: string
+        description: Product Name
+        required : true
+    get:
+      tags:
+        - "Product"
+      summary: Get a Product with specified name
+      responses:
+        200:
+          description: Get a product
+          schema:
+            $ref: "#/definitions/Product"
+    delete:
+      tags:
+        - "Product"
+      summary: Delete a Product with specified name
+      responses:
+        200:
+          description: Deleted product successfully
+  /orders:
+    get:
+      tags:
+        - "Order"
+      summary: Get all Orders
+      parameters:
+        - name: date
+          in : query
+          type: string
+          format: date
+          description: date for getting orders per date
+        - name: weekN
+          in: query
+          type: string
+          description : yearly calendar week number to get orders per that week
+        - name: month
+          in: query
+          type: string
+          description: month number to get order per that month
+        - name: year
+          in: query
+          type: string
+          description: year to get the orders per that year
+      responses:
+        200:
+          description: List of Orders retrieved
+          schema:
+            $ref: "#/definitions/Orders"
+    post:
+      tags:
+        - "Order"
+      summary: Add new Order 
+      parameters:
+        - name: Order
+          in: body
+          schema:
+             $ref: "#/definitions/OrderSend"
+      responses:
+        200:
+          description: Added New Order Successfully
+          schema:
+               $ref: "#/definitions/Order"
+  /orders/{orderId}:
+    get:
+      tags:
+        - "Order"
+      summary: Get Order with particalar orderId
+      description: Returns Order with given OrderId
+      responses:
+        200:
+          description: OK
+          schema:
+             $ref: "#/definitions/Order"
+      parameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+          description: OrderID to retrieve the order
+    delete:
+      tags:
+        - "Order"
+      summary: Deletes the Order with particular orderId
+      description: Deletes the Order with given ID
+      responses:
+        200:
+          description: OK
+      parameters:
+        - name: orderId
+          type: string
+          in: path
+          required: true
+          description: OrderId to delete the Order
+  /customers:
+    get:
+      tags:
+        - "Customer"
+      summary: Get All Customers from CoffeeShop
+      description: Returns list of Customers
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Customer"
+    post:
+      tags:
+        - "Customer"
+      summary: Add new Customer to the Coffee Shop
+      description: Adds new Customer and returns the same
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Customer"
+  /customers/{phoneNum}:
+    parameters:
+      - name: phoneNum
+        in: path
+        type: string
+        required: true
+    get:
+      tags:
+        - "Customer"
+      summary: Get Customer with Given Phone Number
+      description: Return the Customer with given ID
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref : "#/definitions/Customer"
+    delete:
+      tags:
+        - "Customer"
+      summary: Delete Customer with Given Phone Number
+      description: Deletes the Customer with given ID
+      responses:
+        200:
+          description: OK
+  /orders/report:
+    get:
+      tags:
+        - "Report"
+      parameters:
+        - name: date
+          in: query
+          type: string
+          format: date
+          description: Date for getting sales report per Date
+        - name: weekN
+          in: query
+          type: string
+          description: Week Number to get sales report per week
+        - name: month
+          in: query
+          type: string
+          description: Month number to get sales report per month
+      summary: To get the Sales Report of the CoffeeShop
+      description: Returns the Sales Report in CSV format as downloadable file
+      responses:
+        200:
+          description: OK
+definitions:
+  Product:
+    description: Product Model
+    type: object
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+    required:
+     - name
+     - price
+  Item:
+    description: Item model
+    type: object
+    properties:
+      name:
+        type: string
+      qty:
+        type: number
+      price:
+        type: number
+    required:
+      - name
+      - qty
+      - price
+  OrderSend:
+    description: Order Model to send in body
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: "#/definitions/Item"
+      customer:
+        type: object
+        $ref: "#/definitions/CustomerToSend"
+    required:
+      - items
+      - customer
+  CustomerToSend:
+    description: Customer model to send in body
+    type: object
+    properties:
+      name:
+        type: string
+      phone: 
+        type: string
+    required:
+      - name
+      - phone
+  Customer:
+    description: Customer Model
+    type: object
+    properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+    required:
+      - name
+      - phone
+      - email
+  Products:
+    description: List of Products
+    type: array
+    items:
+      $ref: "#/definitions/Product"
+  Order:
+    description: Order Model
+    type: object
+    properties:
+      orderId:
+        type: string
+      date:
+        type: string
+        format: date
+      items:
+        type: array
+        items:
+          $ref: "#/definitions/Item"
+      customer:
+        $ref: "#/definitions/Customer"
+    required:
+      - orderId
+      - date
+      - items
+      - customer
+  Orders:
+    description: List of Orders
+    type: array
+    items:
+      $ref: "#/definitions/Order"
+securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: header
+    name: Authorization
+  
+    
+    
+    
+  
+              

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.2.4
+    container_name: "mongodb"
+    ports:
+      - 27000:27017
+    command: --smallfiles
+  app:
+    image: coffeeshopapp
+    ports:
+      - 8103:8103
+    links:
+      - mongodb
