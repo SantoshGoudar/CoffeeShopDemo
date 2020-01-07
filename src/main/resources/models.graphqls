@@ -4,7 +4,7 @@ schema {
 }
 type Query{
     products:[Product]
-    product:Product
+    product(productId:String):Product
 }
 type Mutation{
     createProduct(product: NewProduct):Product

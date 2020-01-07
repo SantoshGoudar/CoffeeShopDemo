@@ -69,3 +69,294 @@ Caused by: java.io.FileNotFoundException: class path resource [models.graphqls] 
 2020-01-07 13:19:54,082 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
 2020-01-07 13:19:54,205 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 8.695 seconds (JVM running for 12.475)
 2020-01-07 13:21:24,478 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [http-nio-8103-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-07 14:30:40,038 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 1964 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-07 14:30:40,046 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-07 14:30:44,679 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-07 14:30:44,680 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-07 14:30:44,861 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-07 14:30:47,140 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-07 14:30:47,140 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-07 14:30:47,243 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e1448bf026c1607ac9ec8d9', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:17}] to localhost:27017
+2020-01-07 14:30:47,252 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e1448bf026c1607ac9ec8d9', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4418000}
+2020-01-07 14:30:47,255 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e1448bf026c1607ac9ec8d9', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-07 14:30:47,798 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:18}] to localhost:27017
+2020-01-07 14:30:48,565 ERROR org.springframework.boot.web.embedded.tomcat.TomcatStarter [main] Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'graphQLServletRegistrationBean' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLServletRegistrationBean' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLHttpServlet' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLHttpServlet' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'invocationInputFactory' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'invocationInputFactory' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchemaProvider' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchemaProvider' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+2020-01-07 14:30:48,593 INFO org.apache.catalina.core.StandardService [main] Stopping service [Tomcat]
+2020-01-07 14:30:48,597 WARN org.apache.catalina.loader.WebappClassLoaderBase [main] The web application [coffeeshop] appears to have started a thread named [cluster-ClusterId{value='5e1448bf026c1607ac9ec8d9', description='null'}-localhost:27017] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.waitForSignalOrTimeout(DefaultServerMonitor.java:229)
+ com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.waitForNext(DefaultServerMonitor.java:210)
+ com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:157)
+ java.lang.Thread.run(Thread.java:748)
+2020-01-07 14:30:48,598 WARN org.apache.catalina.loader.WebappClassLoaderBase [main] The web application [coffeeshop] appears to have started a thread named [CleanCursors-1-thread-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:748)
+2020-01-07 14:30:48,600 INFO org.mongodb.driver.connection [main] Closed connection [connectionId{localValue:2, serverValue:18}] to localhost:27017 because the pool has been closed.
+2020-01-07 14:30:48,621 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:157)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.netcracker.CoffeeShopApplication.CoffeeShopApplication.main(CoffeeShopApplication.java:10)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.maven.AbstractRunMojo$LaunchRunner.run(AbstractRunMojo.java:558)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:125)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:427)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154)
+	... 14 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLServletRegistrationBean' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLServletRegistrationBean' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLHttpServlet' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLHttpServlet' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'invocationInputFactory' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'invocationInputFactory' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchemaProvider' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchemaProvider' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:235)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:226)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:101)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:88)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:234)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:54)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5139)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLHttpServlet' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLHttpServlet' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'invocationInputFactory' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'invocationInputFactory' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchemaProvider' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchemaProvider' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760)
+	... 61 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'invocationInputFactory' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'invocationInputFactory' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchemaProvider' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchemaProvider' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760)
+	... 75 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchemaProvider' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchemaProvider' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760)
+	... 89 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'graphQLSchema' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'graphQLSchema' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:769)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760)
+	... 103 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schemaParser' defined in class path resource [com/oembedler/moon/graphql/boot/GraphQLJavaToolsAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1247)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1167)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:857)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:760)
+	... 117 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.coxautodev.graphql.tools.SchemaParser]: Factory method 'schemaParser' threw exception; nested exception is com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 131 common frames omitted
+Caused by: com.coxautodev.graphql.tools.FieldResolverError: No method found with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment] as the last argument), in priority order:
+
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.createProduct(~product)
+  com.netcracker.CoffeeShopApplication.graphql.fetchers.MutationProductFetcher.getCreateProduct(~product)
+	at com.coxautodev.graphql.tools.FieldResolverScanner.missingFieldResolver(FieldResolverScanner.kt:51)
+	at com.coxautodev.graphql.tools.FieldResolverScanner.findFieldResolver(FieldResolverScanner.kt:42)
+	at com.coxautodev.graphql.tools.SchemaClassScanner.scanResolverInfoForPotentialMatches(SchemaClassScanner.kt:227)
+	at com.coxautodev.graphql.tools.SchemaClassScanner.handleRootType(SchemaClassScanner.kt:122)
+	at com.coxautodev.graphql.tools.SchemaClassScanner.scanForClasses(SchemaClassScanner.kt:81)
+	at com.coxautodev.graphql.tools.SchemaParserBuilder.scan(SchemaParserBuilder.kt:151)
+	at com.coxautodev.graphql.tools.SchemaParserBuilder.build(SchemaParserBuilder.kt:157)
+	at com.oembedler.moon.graphql.boot.GraphQLJavaToolsAutoConfiguration.schemaParser(GraphQLJavaToolsAutoConfiguration.java:57)
+	at com.oembedler.moon.graphql.boot.GraphQLJavaToolsAutoConfiguration$$EnhancerBySpringCGLIB$$85a43c24.CGLIB$schemaParser$1(<generated>)
+	at com.oembedler.moon.graphql.boot.GraphQLJavaToolsAutoConfiguration$$EnhancerBySpringCGLIB$$85a43c24$$FastClassBySpringCGLIB$$ad26145a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.oembedler.moon.graphql.boot.GraphQLJavaToolsAutoConfiguration$$EnhancerBySpringCGLIB$$85a43c24.schemaParser(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 132 common frames omitted
+2020-01-07 14:33:33,477 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 25280 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-07 14:33:33,484 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-07 14:33:39,290 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-07 14:33:39,291 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-07 14:33:39,614 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-07 14:33:42,867 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-07 14:33:42,868 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-07 14:33:42,966 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e14496e026c1662c07ba96b', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:19}] to localhost:27017
+2020-01-07 14:33:42,972 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e14496e026c1662c07ba96b', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3224700}
+2020-01-07 14:33:42,973 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e14496e026c1662c07ba96b', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-07 14:33:43,448 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:20}] to localhost:27017
+2020-01-07 14:33:46,131 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-01-07 14:33:46,796 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-01-07 14:33:46,865 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-01-07 14:33:47,018 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-01-07 14:33:47,511 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.ordermanagement.models.DbSequence in collection: dbSequence
+2020-01-07 14:33:47,517 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
+2020-01-07 14:33:47,606 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 14.832 seconds (JVM running for 25.434)
+2020-01-07 14:36:58,581 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [http-nio-8103-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-07 14:37:40,175 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:38:11,150 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-10] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:38:28,705 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 5324 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-07 14:38:28,719 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-07 14:38:32,914 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-07 14:38:32,915 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-07 14:38:33,090 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-07 14:38:35,570 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-07 14:38:35,571 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-07 14:38:35,748 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e144a93026c1614cc850e80', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:21}] to localhost:27017
+2020-01-07 14:38:35,758 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e144a93026c1614cc850e80', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5491300}
+2020-01-07 14:38:35,760 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e144a93026c1614cc850e80', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-07 14:38:36,470 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:22}] to localhost:27017
+2020-01-07 14:38:39,750 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-01-07 14:38:40,360 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-01-07 14:38:40,417 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-01-07 14:38:40,548 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-01-07 14:38:41,089 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.ordermanagement.models.DbSequence in collection: dbSequence
+2020-01-07 14:38:41,249 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
+2020-01-07 14:38:41,351 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 13.554 seconds (JVM running for 24.938)
+2020-01-07 14:43:48,070 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-6] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:44:35,955 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-9] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:44:48,420 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-9] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:45:47,788 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [http-nio-8103-exec-4] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-07 14:45:55,556 INFO com.netcracker.CoffeeShopApplication.productmanagement.controllers.ProductController [http-nio-8103-exec-7]  list all prodcuts 
+2020-01-07 14:45:55,557 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-7] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:46:19,046 INFO com.netcracker.CoffeeShopApplication.productmanagement.controllers.ProductController [http-nio-8103-exec-2] add new product string
+2020-01-07 14:46:19,058 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] Saving Document containing fields: [_id, category, price, _class]
+2020-01-07 14:46:51,501 INFO com.netcracker.CoffeeShopApplication.productmanagement.controllers.ProductController [http-nio-8103-exec-5] add new product tetst
+2020-01-07 14:46:51,502 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-5] Saving Document containing fields: [_id, category, price, _class]
+2020-01-07 14:47:05,177 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-07 14:49:34,085 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] Saving Document containing fields: [_id, category, price, _class]
+2020-01-07 14:49:48,167 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-3] Saving Document containing fields: [_id, category, price, _class]
+2020-01-07 14:50:09,966 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-6] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
