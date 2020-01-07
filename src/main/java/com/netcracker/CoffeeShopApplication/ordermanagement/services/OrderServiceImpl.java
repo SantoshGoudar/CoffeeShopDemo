@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order save(Order order, String header) {
-        String endPoint = "http://" + environment.getProperty("server.host") + ":" + environment.getProperty("server.port") + environment.getProperty("customerEndPoint");
+    /*    String endPoint = "http://" + environment.getProperty("server.host") + ":" + environment.getProperty("server.port") + environment.getProperty("customerEndPoint");
         if (order.getOrderId() == null) {
             long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);
             order.setOrderId("CS" + nextSequenceNo);
@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
             Calendar calendar = Calendar.getInstance();
             Date now = calendar.getTime();
             order.setDate(now);
-        }
+        }*/
         return repository.save(order);
     }
 

@@ -1,0 +1,27 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+type Query{
+    products:[Product]
+    product:Product
+}
+type Mutation{
+    createProduct(product: NewProduct):Product
+}
+type Product{
+    name:String
+    price:Float
+    category:Category
+}
+enum Category{
+    COLD_COFFEE,
+    HOT_COFFEE,
+    SNACK
+
+}
+input NewProduct{
+    name:String
+    price:Float
+    category:Category
+}
