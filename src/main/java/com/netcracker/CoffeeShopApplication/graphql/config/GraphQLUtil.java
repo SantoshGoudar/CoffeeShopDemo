@@ -39,7 +39,7 @@ public class GraphQLUtil {
 
     public RuntimeWiring buildRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring().type("Query",
-            typeWiring -> typeWiring.dataFetcher("products", productFetcher).dataFetcher("products", productsFetcher))
-            .type("Mutatuin", typeWiring -> typeWiring.dataFetcher("product", mutationProductFetcher)).build();
+            typeWiring -> typeWiring.dataFetcher("product", productFetcher).dataFetcher("products", productsFetcher))
+            .type("Mutation", typeWiring -> typeWiring.dataFetcher("product", mutationProductFetcher)).build();
     }
 }
