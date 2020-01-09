@@ -19,7 +19,7 @@ public class MainController {
     @Autowired
     MainController(GraphQLUtil graphQlUtility) throws IOException {
         this.graphQlUtility = graphQlUtility;
-        graphQL = graphQlUtility.createGraphQL();
+        //graphQL = graphQlUtility.createGraphQL();
     }
 
     @PostMapping(value = "/query")

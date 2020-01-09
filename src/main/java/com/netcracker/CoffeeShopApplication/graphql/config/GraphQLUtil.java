@@ -14,6 +14,7 @@ import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -29,12 +30,12 @@ public class GraphQLUtil {
     @Value("classpath:models.graphqls")
     Resource schemaFile;
 
-    @PostConstruct
-    public GraphQL createGraphQL() throws IOException {
+   @Bean(name = "graphQLSchema")
+    public GraphQLSchema createGraphQL() throws IOException {
         File file = schemaFile.getFile();
         TypeDefinitionRegistry parse = new SchemaParser().parse(file);
         GraphQLSchema graphQLSchema = new SchemaGenerator().makeExecutableSchema(parse, buildRuntimeWiring());
-        return GraphQL.newGraphQL(graphQLSchema).build();
+        return graphQLSchema;
     }
 
     public RuntimeWiring buildRuntimeWiring() {

@@ -547,3 +547,73 @@ name
 price
 category
 }'
+2020-01-09 17:58:29,176 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 22196 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-09 17:58:29,180 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-09 17:58:33,160 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-09 17:58:33,161 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-09 17:58:33,540 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-09 17:58:36,498 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-09 17:58:36,499 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-09 17:58:36,676 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e171c74026c1656b4b887ad', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:23}] to localhost:27017
+2020-01-09 17:58:36,681 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171c74026c1656b4b887ad', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2567000}
+2020-01-09 17:58:36,683 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171c74026c1656b4b887ad', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-09 17:58:36,870 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:24}] to localhost:27017
+2020-01-09 17:58:38,356 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-01-09 17:58:38,736 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-01-09 17:58:38,777 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-01-09 17:58:38,865 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-01-09 17:58:39,220 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.ordermanagement.models.DbSequence in collection: dbSequence
+2020-01-09 17:58:39,229 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
+2020-01-09 17:58:39,334 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 10.866 seconds (JVM running for 39.548)
+2020-01-09 17:59:08,907 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [http-nio-8103-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-09 18:01:11,476 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 13676 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-09 18:01:11,479 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-09 18:01:14,484 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-09 18:01:14,484 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-09 18:01:14,884 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-09 18:01:17,753 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-09 18:01:17,754 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-09 18:01:17,817 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e171d15026c16356cc6abcb', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:25}] to localhost:27017
+2020-01-09 18:01:17,822 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171d15026c16356cc6abcb', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2475801}
+2020-01-09 18:01:17,823 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171d15026c16356cc6abcb', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-09 18:01:18,088 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:26}] to localhost:27017
+2020-01-09 18:01:19,225 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-01-09 18:01:19,618 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-01-09 18:01:19,650 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-01-09 18:01:19,733 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-01-09 18:01:20,126 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.ordermanagement.models.DbSequence in collection: dbSequence
+2020-01-09 18:01:20,134 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
+2020-01-09 18:01:20,212 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 9.673 seconds (JVM running for 18.754)
+2020-01-09 18:08:21,050 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Starting CoffeeShopApplication on ws-10084 with PID 14836 (C:\Workspace\coffeeshop-app\target\classes started by sago0519 in C:\Workspace\coffeeshop-app)
+2020-01-09 18:08:21,055 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] No active profile set, falling back to default profiles: default
+2020-01-09 18:08:24,028 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2020-01-09 18:08:24,029 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-01-09 18:08:24,463 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [main] Initializing Spring embedded WebApplicationContext
+2020-01-09 18:08:26,609 INFO org.mongodb.driver.cluster [main] Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-01-09 18:08:26,609 INFO org.mongodb.driver.cluster [main] Adding discovered server localhost:27017 to client view of cluster
+2020-01-09 18:08:26,672 INFO org.mongodb.driver.connection [cluster-ClusterId{value='5e171ec2026c1639f43c20bf', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:27}] to localhost:27017
+2020-01-09 18:08:26,677 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171ec2026c1639f43c20bf', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 10]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2752400}
+2020-01-09 18:08:26,679 INFO org.mongodb.driver.cluster [cluster-ClusterId{value='5e171ec2026c1639f43c20bf', description='null'}-localhost:27017] Discovered cluster type of STANDALONE
+2020-01-09 18:08:26,952 INFO org.mongodb.driver.connection [main] Opened connection [connectionId{localValue:2, serverValue:28}] to localhost:27017
+2020-01-09 18:08:28,630 INFO springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2020-01-09 18:08:29,002 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Context refreshed
+2020-01-09 18:08:29,031 INFO springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2020-01-09 18:08:29,114 INFO springfox.documentation.spring.web.scanners.ApiListingReferenceScanner [main] Scanning for api listing references
+2020-01-09 18:08:29,508 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.ordermanagement.models.DbSequence in collection: dbSequence
+2020-01-09 18:08:29,515 DEBUG org.springframework.data.mongodb.core.MongoTemplate [main] findOne using query: { "_id" : "OrderSequence" } fields: { } in db.collection: coffeeshop.dbSequence
+2020-01-09 18:08:29,588 INFO com.netcracker.CoffeeShopApplication.CoffeeShopApplication [main] Started CoffeeShopApplication in 9.15 seconds (JVM running for 17.212)
+2020-01-09 18:08:38,679 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:09:38,894 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/coffeeshop] [http-nio-8103-exec-10] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-09 18:10:00,881 INFO com.netcracker.CoffeeShopApplication.productmanagement.controllers.ProductController [http-nio-8103-exec-5] Delete product 05aa17b2-c8ab-410e-b52b-d92177f1f559
+2020-01-09 18:10:00,891 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-5] Remove using query: { "_id" : "05aa17b2-c8ab-410e-b52b-d92177f1f559" } in collection: product.
+2020-01-09 18:10:09,086 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-2] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:10:10,102 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-8] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:10:37,406 INFO com.netcracker.CoffeeShopApplication.productmanagement.controllers.ProductController [http-nio-8103-exec-4] Delete product 05aa17b2-c8ab-410e-b52b-d92177f1f559
+2020-01-09 18:10:37,407 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-4] Remove using query: { "_id" : "05aa17b2-c8ab-410e-b52b-d92177f1f559" } in collection: product.
+2020-01-09 18:10:56,181 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-10] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:10:56,884 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-7] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:10:57,260 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-3] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:10:57,436 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-4] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:12:06,249 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-1] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:12:17,133 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-8] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
+2020-01-09 18:12:22,476 DEBUG org.springframework.data.mongodb.core.MongoTemplate [http-nio-8103-exec-3] find using query: { } fields: Document{{}} for class: class com.netcracker.CoffeeShopApplication.productmanagement.models.Product in collection: product
