@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers("/products", "/products**", "/products/{name:\\w+}").hasRole("ADMIN").antMatchers(/**/"/reports/orders", "/reports/orders**", "/reports/orders/{orderId:\\w*\\d*}", "/orders", "/orders**", "/orders/{orderId:\\w*\\d*}", "/customers", "/customers**", "/customers/{id\\d*}").hasAnyRole("ADMIN", "USER").antMatchers("/**/login","/swagger-ui").permitAll().and().addFilterBefore(new AuthenticationFilter(authenticationTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.httpBasic().disable().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers("/products", "/products**", "/products/{name:\\w+}").hasRole("ADMIN").antMatchers(/**/"/reports/orders", "/reports/orders**", "/reports/orders/{orderId:\\w*\\d*}", "/orders", "/orders**", "/orders/{orderId:\\w*\\d*}", "/customers", "/customers**", "/customers/{id\\d*}").hasAnyRole("ADMIN", "USER").antMatchers("/**/addUser","/**/login","/swagger-ui").permitAll().and().addFilterBefore(new AuthenticationFilter(authenticationTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
