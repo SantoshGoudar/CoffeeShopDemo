@@ -1,5 +1,6 @@
 package com.netcracker.CoffeeShopApplication.graphql.fetchers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netcracker.CoffeeShopApplication.productmanagement.models.Product;
 import com.netcracker.CoffeeShopApplication.productmanagement.repository.ProductRepository;
 import graphql.schema.DataFetcher;
@@ -15,7 +16,14 @@ public class MutationProductFetcher implements DataFetcher<Product> {
 
     @Override
     public Product get(DataFetchingEnvironment dataFetchingEnvironment) {
-        return productRepository.save((Product) dataFetchingEnvironment.getArgument("product"));
-        
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String product = objectMapper.writeValueAsString(dataFetchingEnvironment.getArgument("product"));
+            return productRepository.save(objectMapper.readValue(product,Product.class));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

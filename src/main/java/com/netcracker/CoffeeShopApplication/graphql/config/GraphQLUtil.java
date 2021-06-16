@@ -41,6 +41,6 @@ public class GraphQLUtil {
     public RuntimeWiring buildRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring().type("Query",
             typeWiring -> typeWiring.dataFetcher("product", productFetcher).dataFetcher("products", productsFetcher))
-            .type("Mutation", typeWiring -> typeWiring.dataFetcher("product", mutationProductFetcher)).build();
+            .type("Mutation", typeWiring -> typeWiring.dataFetcher("createProduct", mutationProductFetcher)).build();
     }
 }
