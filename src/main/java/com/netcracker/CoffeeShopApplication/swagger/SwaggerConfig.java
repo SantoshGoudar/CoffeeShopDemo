@@ -17,7 +17,7 @@ import java.util.*;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    public static final springfox.documentation.service.Contact DEFAULT_CONTACT = new Contact("Santosh Goudar", "santosh.goudar@netcracker.com", "santosh.goudar@netcracker.com");
+    public static final springfox.documentation.service.Contact DEFAULT_CONTACT = new Contact("Santosh Goudar", "santoshgoudarm@gmail.com", "santosh.goudar@netcracker.com");
 
     public static final ApiInfo DEFAULT_API_INFO = new ApiInfo(
             "CoffeeShop Application", "CoffeeShop API Description", "1.0",

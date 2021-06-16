@@ -92,7 +92,7 @@ public class OrderController {
             @ApiResponse(code = 404, message = "Could not add Order"),
             @ApiResponse(code = 403, message = "User not Authorized")
     })
-    public Order updateOrder(@RequestBody @Valid Order order, HttpServletRequest request) {
+    public Order updateOrder(@RequestBody @Valid Order order, HttpServletRequest request) throws CustomException{
         log.info("update order " + order.getOrderId());
         String authorization = request.getHeader("Authorization");
         return orderService.save(order, authorization);
@@ -106,7 +106,7 @@ public class OrderController {
             @ApiResponse(code = 404, message = "Could not add Order"),
             @ApiResponse(code = 403, message = "User not Authorized")
     })
-    public Order addOrder(@RequestBody @Valid Order order, HttpServletRequest request) {
+    public Order addOrder(@RequestBody @Valid Order order, HttpServletRequest request) throws CustomException{
         log.info("Add new Order ");
         String authorization = request.getHeader("Authorization");
         return orderService.save(order, authorization);

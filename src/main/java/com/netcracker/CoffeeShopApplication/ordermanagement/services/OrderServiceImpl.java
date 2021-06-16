@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order save(Order order, String header) {
+    public Order save(Order order, String header) throws CustomException{
         String endPoint = "http://" + environment.getProperty("server.host") + ":" + environment.getProperty("server.port") + environment.getProperty("customerEndPoint");
         if (order.getOrderId() == null) {
             long nextSequenceNo = sequenceService.getNextSequenceNo(seq_key);

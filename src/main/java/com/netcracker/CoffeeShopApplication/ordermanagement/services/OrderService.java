@@ -12,7 +12,7 @@ public interface OrderService {
 
     public Order findById(String orderId) throws CustomException;
 
-    public Order save(Order order, String header);
+    public Order save(Order order, String header) throws CustomException;
 
     public Order save(Order order);
 
