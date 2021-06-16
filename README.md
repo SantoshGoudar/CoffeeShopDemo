@@ -12,3 +12,13 @@ addUser - add an user with name,password and role (ADMIN or USER).
 login - authenticates the user with name and password and return the JWT token which should be included in sequential API calls.
    
 Run the application and open swagger at the location http://localhost:8103/coffeeshop/swagger-ui.html
+
+
+Branch- springboot_graphql
+
+Graphql sample application based on spring boot - where products query and fetchers are added with schema.
+
+![Screenshot](graphql.png)
+
+Run the application and open
+http://localhost:8103/coffeeshop/graphiql
