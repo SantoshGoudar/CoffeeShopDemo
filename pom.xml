@@ -86,7 +86,7 @@
                         </goals>
                         <configuration>
                             <mainClass>
-                                com.netcracker.CoffeeShopApplication.CoffeeShopApplication
+                                com.goudar.CoffeeShopApplication.CoffeeShopApplication
                             </mainClass>
                         </configuration>
                     </execution>

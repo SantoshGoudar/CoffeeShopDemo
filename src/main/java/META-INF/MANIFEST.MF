@@ -33,5 +33,5 @@ Class-Path: log4j-to-slf4j-2.11.2.jar classmate-1.4.0.jar jackson-core
  api-1.7.26.jar byte-buddy-1.9.12.jar reflections-0.9.11.jar spring-bo
  ot-starter-web-2.1.4.RELEASE.jar springfox-core-2.7.0.jar springfox-s
  chema-2.7.0.jar
-Main-Class: com.netcracker.CoffeeShopApplication.CoffeeShopApplication
+Main-Class: com.goudar.CoffeeShopApplication.CoffeeShopApplication
 
